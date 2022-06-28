@@ -5,9 +5,6 @@ using UnityEngine;
 public class Numbers : MonoBehaviour
 {
     // variables for clicking 
-    private Color clicked = new Color(0.5f,0.5f,0.5f,0.5f);
-    private Color unclicked = Color.white;
-
     public bool selected = false;
 
     public SpriteRenderer nbrSprite;
@@ -63,7 +60,7 @@ public class Numbers : MonoBehaviour
     public IEnumerator FlipDownAnim()
     {
         nbrSprite.sprite = middle;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         nbrSprite.sprite = down;
         collider.transform.position -= colliderMove;
     }
@@ -71,7 +68,7 @@ public class Numbers : MonoBehaviour
     public IEnumerator FlipUpAnim()
     {
         nbrSprite.sprite = middle;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         nbrSprite.sprite = up;
         collider.transform.position += colliderMove;
     }
