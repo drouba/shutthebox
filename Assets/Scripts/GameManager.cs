@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,9 +24,15 @@ public class GameManager : MonoBehaviour
 
     // game over variable
     public bool gameOver = false;
+    public bool win = false;
 
     //UI Button Variables
-    public GameObject mainMenu;
+    public GameObject losePage;
+    public GameObject winPage;
+    public GameObject rollDice;
+
+    //Scene variable
+    Scene scene;
 
 
     // Start is called before the first frame update
@@ -40,27 +47,58 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+        scene = SceneManager.GetActiveScene();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        CalculateSumDice();
 
-        if (selectionSum != sumDice) { canRoll = false; }
-        else { canRoll = true; }
-
-        if (canRoll)
+        if (scene.name == "ShutTheBox")
         {
-            rollDiceButton.interactable = true;
-        }
-        else { rollDiceButton.interactable = false; }
+            CalculateSumDice();
+
+            if (selectionSum != sumDice) { canRoll = false; }
+            else { canRoll = true; }
+
+            if (canRoll)
+            {
+                rollDiceButton.interactable = true;
+            }
+            else { rollDiceButton.interactable = false; }
+
+            if (win)
+            {
+                SceneChanger.Instance.Win();
+            }
+        }   
     }
 
     public void CheckGameOver()
     {
         if (!isAvailable(sumDice, 9, availableNumbers)) gameOver = true;
-        if (gameOver) mainMenu.SetActive(true);
+        if (gameOver)
+        {
+            losePage.SetActive(true);
+            rollDice.SetActive(false);
+        }
+    }
+
+    public void CheckWin()
+    {
+        foreach (int num in availableNumbers)
+        {
+            if (num != 0) return;
+        }
+
+        win = true;
+        if (win)
+        {
+            winPage.SetActive(true);
+            rollDice.SetActive(false);
+        }
+
     }
 
     public void NumSelect(int num)

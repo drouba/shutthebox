@@ -17,6 +17,9 @@ public class RollDiceButton : MonoBehaviour
     public Sprite middle;
     public Sprite closed;
 
+    // audio
+    public AudioSource audioSource;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +38,8 @@ public class RollDiceButton : MonoBehaviour
     public IEnumerator Open()
     {
         image.sprite = middle;
+        audioSource.time = 1.1f;
+        audioSource.Play();
         yield return new WaitForSeconds(0.1f);
         image.sprite = open;
     }
@@ -42,6 +47,8 @@ public class RollDiceButton : MonoBehaviour
     public IEnumerator Close()
     {
         image.sprite = middle;
+        audioSource.time = 1.1f;
+        audioSource.Play();
         yield return new WaitForSeconds(0.1f);
         image.sprite = closed;
     }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public SceneChanger Instance { get; private set; }
+    public static SceneChanger Instance { get; private set; }
 
     void Awake()
     {
@@ -32,6 +32,17 @@ public class SceneChanger : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Win()
+    {
+        SceneManager.LoadScene("Win");
+    }
+
+    public void Lose()
+    {
+        Debug.Log("Load lose");
+        SceneManager.LoadScene("Lose");
     }
 
 }

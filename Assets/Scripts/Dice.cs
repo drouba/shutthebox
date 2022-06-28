@@ -10,6 +10,9 @@ public class Dice : MonoBehaviour
     // Array of dice sides sprites to load from Resources folder
     private Sprite[] diceSides;
 
+    // Array of sounds
+    public AudioSource audioSource;
+
     // Reference to sprite renderer to change sprites
     private SpriteRenderer rend;
 
@@ -36,6 +39,8 @@ public class Dice : MonoBehaviour
         // Variable to contain random dice side number.
         // It needs to be assigned. Let it be 0 initially
         int randomDiceSide = 0;
+        audioSource.time = 0.22f;
+        audioSource.Play();
 
         // Loop to switch dice sides ramdomly
         // before final side appears. 20 itterations here.
@@ -57,6 +62,7 @@ public class Dice : MonoBehaviour
 
         yield return new WaitForSeconds(0.01f);
         GameManager.Instance.CheckGameOver();
+        GameManager.Instance.CheckWin();
 
         // Show final dice value in Console
         Debug.Log(finalSide);

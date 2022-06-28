@@ -20,9 +20,13 @@ public class Numbers : MonoBehaviour
     public BoxCollider2D collider;
     private Vector3 colliderMove = new Vector3(0, 1.0f, 0);
 
+    // audio
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -60,16 +64,22 @@ public class Numbers : MonoBehaviour
     public IEnumerator FlipDownAnim()
     {
         nbrSprite.sprite = middle;
+        audioSource.time = 0.55f;
+        audioSource.Play();
         yield return new WaitForSeconds(0.1f);
         nbrSprite.sprite = down;
+        
         collider.transform.position -= colliderMove;
     }
 
     public IEnumerator FlipUpAnim()
     {
         nbrSprite.sprite = middle;
+        audioSource.time = 0.55f;
+        audioSource.Play();
         yield return new WaitForSeconds(0.1f);
         nbrSprite.sprite = up;
+        
         collider.transform.position += colliderMove;
     }
 }
