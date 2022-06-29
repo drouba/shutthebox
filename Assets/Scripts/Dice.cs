@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
-
+    public int diceRollCount = 0;
     public int finalSide = 0;
 
     // Array of dice sides sprites to load from Resources folder
@@ -27,10 +27,24 @@ public class Dice : MonoBehaviour
         diceSides = Resources.LoadAll<Sprite>("DiceSides/");
     }
 
+    private void Update()
+    {
+        if(diceRollCount == 1)
+        {
+            GameObject[] numbers = GameObject.FindGameObjectsWithTag("Number");
+
+            foreach(GameObject num in numbers)
+            {
+                num.GetComponent<Collider2D>().enabled = true;
+            }
+        }
+    }
+
     // If you left click over the dice then RollTheDice coroutine is started
     public void RollDice()
     {
         StartCoroutine("RollTheDice");
+        diceRollCount++;
     }
 
     // Coroutine that rolls the dice

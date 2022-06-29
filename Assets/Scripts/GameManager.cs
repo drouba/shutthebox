@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject rollDice;
 
     //Scene variable
-    Scene scene;
+    public Scene scene;
 
 
     // Start is called before the first frame update
@@ -72,7 +72,8 @@ public class GameManager : MonoBehaviour
             {
                 SceneChanger.Instance.Win();
             }
-        }   
+        }
+        CheckWin();
     }
 
     public void CheckGameOver()
@@ -83,6 +84,8 @@ public class GameManager : MonoBehaviour
             losePage.SetActive(true);
             rollDice.SetActive(false);
         }
+
+        CheckWin();
     }
 
     public void CheckWin()
@@ -95,7 +98,7 @@ public class GameManager : MonoBehaviour
         win = true;
         if (win)
         {
-            winPage.SetActive(true);
+            losePage.SetActive(true);
             rollDice.SetActive(false);
         }
 
@@ -148,6 +151,17 @@ public class GameManager : MonoBehaviour
             return isAvailable(sum, n - 1, availableNumbers);
 
         return isAvailable(sum, n - 1, availableNumbers) || isAvailable(sum - availableNumbers[n - 1],  n - 1, availableNumbers);
+    }
+
+    public int SumAvailableNum()
+    {
+        int result = 0;
+
+        foreach(int num in availableNumbers)
+        {
+            result += num;
+        }
+        return result;
     }
  
 

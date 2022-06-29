@@ -42,7 +42,26 @@ public class SceneChanger : MonoBehaviour
     public void Lose()
     {
         Debug.Log("Load lose");
-        SceneManager.LoadScene("Lose");
+
+        int endValue = GameManager.Instance.SumAvailableNum();
+
+        if (endValue == 0)
+        {
+            SceneManager.LoadScene("Win");
+        }
+        else if (endValue > 0 && endValue < 6)
+        {
+            SceneManager.LoadScene("CloseWin");
+        }
+        else if(endValue >=4 && endValue < 9)
+        {
+            SceneManager.LoadScene("AlmostLose");
+        }
+        else
+        {
+            SceneManager.LoadScene("Lose");
+        }
+
     }
 
 }

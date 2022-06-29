@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: e11d5137480c20348ad61fd35059edb3
+  - enabled: 1
+    path: Assets/Scenes/AlmostLose.unity
+    guid: c7c6ccf3fd5233f4fa9d70f23cb84179
+  - enabled: 1
+    path: Assets/Scenes/CloseWin.unity
+    guid: 49937c17e069b3642bdd7d9c31bed65f
   m_configObjects: {}
